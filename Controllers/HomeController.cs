@@ -14,14 +14,14 @@ namespace FIAP_MVC.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index() //por ser uma interface, nos temos um contrato para retornar algo, no caso ele vai retornar uma view q chama index
         {
             return View();
         }
 
         public IActionResult Register(User resquest)
         {
-            var user = _dataContext.MVC_Users.FirstOrDefault(x => x.UserEmail == resquest.UserEmail);
+            var user = _dataContext.MVC_Users.First(x => x.UserEmail == resquest.UserEmail); //aqui está verificando se ja tem um email
             if (user != null) 
             {
                 return BadRequest("Usuário ja existe");
